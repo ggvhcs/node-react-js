@@ -25,10 +25,10 @@ $ ls -l
 5477 Feb 25 17:09 readme.txt
 ---
 
-$ sudo chmod 777 -Rvf ../node-react-js // we need be sure for docker have privileges for this folder.
+$ sudo chmod 777 -Rvf ../node-react-js // we need be sure, all privileges for docker in this folder.
 $ sudo chown nobody:nogroup -Rvf ../node-react-js
 
-2 --- Create the Dockerfile file --- #
+2 --- Create the Dockerfile file --- 
 $ touch Dockerfile // create the file.
 $ nano Dockerfile // for edit the file.
 $ cat Dockerfile // see the content.
@@ -50,12 +50,11 @@ CMD ["/bin/bash"]
 $ sudo docker build -t node-reactjs . // create the image docker.
 $ sudo docker images |grep node-reactjs // list the image created.
 ---
-$ sudo docker images |grep node-reactjs
-node-reactjs        latest           72d67fdde387   About an hour ago   1.59GB
+node-reactjs       latest           df2fda52c41a   2 hours ago     975MB
 ---
 
 4 --- create an network bridge ---
-$ sudo docker network create --subnet=172.15.0.0/16 homenet // create the net if not exist.
+$ sudo docker network create --subnet=172.15.0.0/16 homenet // create the net if not exist. <---
 $ sudo docker network ls // list all docker nets.
 NETWORK ID     NAME      DRIVER    SCOPE
 5d945100191c   homenet   bridge    local
@@ -72,13 +71,13 @@ $ sudo docker run -ti --name noderjsd \
 --interactive --tty --entrypoint /bin/bash node-reactjs
 
 # --name --> name of container.
-# --net homenet --ip 172.15.0.15 --> static ip address.
-# -v $(pwd):/app --> current folder will be mounted as project folder.
+# --net homenet --ip 172.15.0.15 --> set static ip address.
+# -v $(pwd):/app --> $(pwd)current hosts folder will be mounted as project folder in docker container.
 
---- after that check if contaner is running.
+--- after that check if contaner is running. ---
 $ sudo docker ps // list if the container is created and if it is running.
 
---- we need be enside the container.
+--- we need be enside the container. ---
 $ sudo docker exec -it cc17ed0e9a78 bash
 
 $ node --version
@@ -104,7 +103,7 @@ $ create-react-app --version
 
 6 ---  ---
 $ ls -l /app
-$ npx create-react-app noderjsd // create the app.
+$ npx create-react-app noderjsd // command for create the app with name noderjsd.
 $ cd noderjsd 
 $ yarn start // run the app reactjs.
 ---
