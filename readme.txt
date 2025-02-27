@@ -1,7 +1,6 @@
-# --- *** Expo React JS Develop Environment with Docker in Linux Mint 21. *** --- #
+# --- *** Expo React JS Develop Environment with create-react-app, Docker in Linux Mint 21. *** --- #
 
 --- youtube ---
-https://youtu.be/TMk8Pf1-1n0
 
 --- github repository ---
 https://github.com/ggvhcs/node-react-js
@@ -15,9 +14,9 @@ Github Desktop version 3.2.0-linux1 (x64)
 Visual Studio Code version 1.96.4
 ---
 
-1 --- download image node:18.16.0-buster from hub docker ---
-$ sudo docker pull node:18.16.0-buster
-$ sudo docker images |grep node
+1 --- download image node:18.16.0 from hub docker ---
+$ sudo docker pull node:18.16.0 // command docker for download image from hub docker.
+$ sudo docker images |grep node // list the image downloaded.
 
 $ cd ~/Documents/GitHub/docker/node/node-react-js
 $ ls -l
@@ -26,13 +25,13 @@ $ ls -l
 5477 Feb 25 17:09 readme.txt
 ---
 
-$ sudo chmod 777 -Rvf ../node-react-js
+$ sudo chmod 777 -Rvf ../node-react-js // we need be sure for docker have privileges for this folder.
 $ sudo chown nobody:nogroup -Rvf ../node-react-js
 
 2 --- Create the Dockerfile file --- #
-$ touch Dockerfile
-$ nano Dockerfile
-$ cat Dockerfile
+$ touch Dockerfile // create the file.
+$ nano Dockerfile // for edit the file.
+$ cat Dockerfile // see the content.
 ---
 FROM node:18.16.0-buster
 
@@ -47,16 +46,16 @@ CMD ["/bin/bash"]
 ---
 
 3 --- create image from debian latest ---
-$ sudo docker build -t node-reactjs .
-$ sudo docker images |grep node-reactjs
+$ sudo docker build -t node-reactjs . // create the image docker.
+$ sudo docker images |grep node-reactjs // list the image created.
 ---
 $ sudo docker images |grep node-reactjs
 node-reactjs        latest           72d67fdde387   About an hour ago   1.59GB
 ---
 
 4 --- create an network bridge ---
-$ sudo docker network create --subnet=172.15.0.0/16 homenet
-$ sudo docker network ls
+$ sudo docker network create --subnet=172.15.0.0/16 homenet //create the net if not exist.
+$ sudo docker network ls // list all docker nets.
 NETWORK ID     NAME      DRIVER    SCOPE
 5d945100191c   homenet   bridge    local
 
@@ -65,10 +64,16 @@ $ cd ~/Documents/GitHub/docker/node/node-react-js
 
 $ docker run -d -it -p [host_port]:[container_port] –name [container_name] [image_id/image_tag]
 
+--- ---
 $ sudo docker run -ti --name noderjsd \
 --net homenet --ip 172.15.0.15 -dp 3000:3000 \
 -v $(pwd):/app \
 --interactive --tty --entrypoint /bin/bash node-reactjs
+
+$ sudo docker ps // list if the container is created and if it is running.
+
+--- we need be enside the container.
+$ sudo docker exec -it cc17ed0e9a78 bash
 
 $ node --version
 ---
@@ -88,14 +93,14 @@ $ npx --version
 ---
 $ create-react-app --version
 ---
-0.22.18
+5.1.0
 ---
 
 6 ---  ---
 $ ls -l /app
-$ npx create-react-app noderjsd
-$ cd noderjsd
-$ yarn start
+$ npx create-react-app noderjsd // create the app.
+$ cd noderjsd 
+$ yarn start // run the app reactjs.
 ---
 ---
 
