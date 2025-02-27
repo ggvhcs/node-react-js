@@ -41,8 +41,9 @@ RUN npm i -g create-react-app
 
 WORKDIR /app
 
-CMD ["/bin/bash"]
+EXPOSE 3000
 
+CMD ["/bin/bash"]
 ---
 
 3 --- create image from debian latest ---
@@ -54,13 +55,13 @@ node-reactjs        latest           72d67fdde387   About an hour ago   1.59GB
 ---
 
 4 --- create an network bridge ---
-$ sudo docker network create --subnet=172.15.0.0/16 homenet //create the net if not exist.
+$ sudo docker network create --subnet=172.15.0.0/16 homenet // create the net if not exist.
 $ sudo docker network ls // list all docker nets.
 NETWORK ID     NAME      DRIVER    SCOPE
 5d945100191c   homenet   bridge    local
 
 5 --- create an container for test ---
-$ cd ~/Documents/GitHub/docker/node/node-react-js
+$ cd ~/Documents/GitHub/docker/node/node-react-js // we need be in the correct directory.
 
 $ docker run -d -it -p [host_port]:[container_port] –name [container_name] [image_id/image_tag]
 
@@ -70,6 +71,11 @@ $ sudo docker run -ti --name noderjsd \
 -v $(pwd):/app \
 --interactive --tty --entrypoint /bin/bash node-reactjs
 
+# --name --> name of container.
+# --net homenet --ip 172.15.0.15 --> static ip address.
+# -v $(pwd):/app --> current folder will be mounted as project folder.
+
+--- after that check if contaner is running.
 $ sudo docker ps // list if the container is created and if it is running.
 
 --- we need be enside the container.
