@@ -1,4 +1,4 @@
-# --- *** Expo React JS Develop Environment with create-react-app, Docker in Linux Mint 21. *** --- #
+# --- *** React JS Develop Environment with create-react-app, Docker in Linux Mint 21. *** --- #
 
 --- youtube ---
 
@@ -65,7 +65,7 @@ $ cd ~/Documents/GitHub/docker/node/node-react-js // we need be in the correct d
 $ docker run -d -it -p [host_port]:[container_port] –name [container_name] [image_id/image_tag]
 
 --- ---
-$ sudo docker run -ti --name noderjsd \
+$ sudo docker run -ti --name create-rjs-app \
 --net homenet --ip 172.15.0.15 -dp 3000:3000 \
 -v $(pwd):/app \
 --interactive --tty --entrypoint /bin/bash node-reactjs
@@ -103,10 +103,12 @@ $ create-react-app --version
 
 6 ---  ---
 $ ls -l /app
-$ npx create-react-app noderjsd // command for create the app with name noderjsd.
-$ cd noderjsd 
+$ npx create-react-app create-rjs-app // command for create the app with name create-rjs-app.
+$ cd create-rjs-app 
 $ yarn start // run the app reactjs.
 ---
 ---
 
 8 --- open the app with web browser ---
+9 --- !for test. ---
+npm install react-scripts@latest
