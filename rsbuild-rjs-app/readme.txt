@@ -23,18 +23,9 @@ Visual Studio Code version 1.96.4
 $ sudo docker pull node:18.16.0 // command docker for download image from hub docker !if not down before.
 $ sudo docker images |grep node // list the image downloaded.
 
-$ cd ~/Documents/GitHub/docker/node/node-react-js/rsbuild-rjs-app
+$ cd ~/Documents/GitHub/docker/node/node-react-js
 $ ls -l
 ---
--rwxrwxrwx  1 nobody nogroup   129 Feb 27 18:40 Dockerfile
-drwxrwxrwx 21 nobody nogroup  4096 Feb 27 18:15 node_modules
--rwxrwxrwx  1 nobody nogroup   379 Feb 27 17:54 package.json
--rwxrwxrwx  1 nobody nogroup 15814 Feb 27 18:15 package-lock.json
-drwxrwxrwx  2 nobody nogroup  4096 Feb 27 17:54 public
--rwxrwxrwx  1 nobody nogroup   262 Feb 27 17:54 README.md
--rwxrwxrwx  1 nobody nogroup  3281 Feb 28 04:54 readme.txt
--rwxrwxrwx  1 nobody nogroup   162 Feb 27 17:54 rsbuild.config.ts
-drwxrwxrwx  2 nobody nogroup  4096 Feb 27 17:54 src
 ---
 
 $ sudo chmod 777 -Rvf ../rsbuild-rjs-app // we need be sure, all privileges for docker in this folder.
@@ -85,7 +76,7 @@ $ sudo docker run -ti --name noderjsd \
 # -v $(pwd):/app --> $(pwd)current hosts folder will be mounted as project folder in docker container.
 
 --- after that check if contaner is running. ---
-$ sudo docker ps // list if the container is created and if it is running.
+$ sudo docker ps |grep reactjs // list if the container is created and if it is running.
 
 --- we need be enside the container. ---
 $ sudo docker exec -it cc17ed0e9a78 bash
