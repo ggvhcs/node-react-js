@@ -27,7 +27,10 @@ $ sudo docker images |grep node // list the image downloaded.
 $ cd ~/Documents/GitHub/docker/node/node-react-js/rsbuild-rjs-app
 $ ls -l
 ---
+-rwxrwxrwx 1 nobody nogroup  129 Feb 27 18:40 Dockerfile
+-rwxrwxrwx 1 nobody nogroup 3099 Feb 28 21:04 readme.txt
 ---
+
 2 --- Create the Dockerfile file --- 
 $ touch Dockerfile // create the file, if not exist.
 $ nano Dockerfile // for edit the file.
@@ -50,17 +53,17 @@ CMD ["/bin/bash"]
 $ sudo docker build -t node-reactjs . // run this command for create the image docker if not created before.
 $ sudo docker images |grep node-reactjs // list the image created.
 ---
-node-reactjs       latest           df2fda52c41a   2 hours ago     975MB
+node-reactjs       latest           df2fda52c41a   35 hours ago    975MB
 ---
 
 4 --- create an network bridge ---
-$ sudo docker network create --subnet=172.15.0.0/16 homenet // create the net if not exist. <---
+$ sudo docker network create --subnet=172.15.0.0/16 homenet // create the net interface if not exist. <---
 $ sudo docker network ls // list all docker nets.
 NETWORK ID     NAME      DRIVER    SCOPE
 5d945100191c   homenet   bridge    local
 
 5 --- create an container for test ---
-$ cd ~/Documents/GitHub/docker/node/node-react-js/rsbuild-rjs-app // we need be in the correct directory.
+$ cd ~/Documents/GitHub/docker/node/node-react-js // we need be in the correct directory.
 
 --- ---
 $ sudo docker run -ti --name noderjsd \
@@ -70,15 +73,15 @@ $ sudo docker run -ti --name noderjsd \
 
 # --name --> name of container.
 # --net homenet --ip 172.15.0.15 --> set static ip address.
-# -v $(pwd):/app --> $(pwd)current hosts folder will be mounted as project folder in docker container.
+# -v $(pwd):/app --> $(pwd) current hosts folder will be mounted as project folder in docker container.
 
 --- after that check if contaner is running. ---
 $ sudo docker ps |grep reactjs // list if the container is created and if it is running.
 
 --- we need be enside the container. ---
-$ sudo docker exec -it cc17ed0e9a78 bash
+$ sudo docker exec -it 4fe4db684e5e bash
 
---- run this commands for check if you want.
+--- run this commands for check, !if you want.
 $ node --version
 ---
 v18.16.0
@@ -98,17 +101,15 @@ $ npx --version
 
 6 --- I will create another rsbuild react app for test ---
 
-$ mkdir app
-$ cd app/
 $ npm create rsbuild@latest
-$ cd app
+$ cd rsbuild-app
 $ npm install
 $ npm fund
 $ rm package-lock.json // if you need, delete the file.
 $ npm install
 $ npm fund
-$ chown nobody:nogroup -Rvf ../app
-$ chmod 777 -Rvf ../app
+$ chown nobody:nogroup -Rvf ../rsbuild-app
+$ chmod 777 -Rvf ../rsbuild-app
 $ mv rsbuild.config.mjs rsbuild.config.ts // *** !importante... ***
 
 --- run the app reactjs. ---
