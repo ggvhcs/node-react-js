@@ -1,4 +1,5 @@
-!!!Just like the last video, everything is the same. !menos los ultimos pasos ok.
+!Just like the last video about reactjs, every steps are the same. 
+!but this time we can set up an reactjs app with rsbuild.
 
 --- bibliography: ---
 https://rsbuild.dev/guide/framework/react
@@ -20,17 +21,13 @@ Visual Studio Code version 1.96.4
 ---
 
 1 --- download image node:18.16.0 from hub docker ---
-$ sudo docker pull node:18.16.0 // command docker for download image from hub docker !if not down before.
+$ sudo docker pull node:18.16.0 // command docker for download image from hub docker !if not downloaded before.
 $ sudo docker images |grep node // list the image downloaded.
 
-$ cd ~/Documents/GitHub/docker/node/node-react-js
+$ cd ~/Documents/GitHub/docker/node/node-react-js/rsbuild-rjs-app
 $ ls -l
 ---
 ---
-
-$ sudo chmod 777 -Rvf ../rsbuild-rjs-app // we need be sure, all privileges for docker in this folder.
-$ sudo chown nobody:nogroup -Rvf ../rsbuild-rjs-app
-
 2 --- Create the Dockerfile file --- 
 $ touch Dockerfile // create the file, if not exist.
 $ nano Dockerfile // for edit the file.
@@ -50,7 +47,7 @@ CMD ["/bin/bash"]
 ---
 
 3 --- create image from debian latest ---
-$ sudo docker build -t node-reactjs . // create the image docker.
+$ sudo docker build -t node-reactjs . // run this command for create the image docker if not created before.
 $ sudo docker images |grep node-reactjs // list the image created.
 ---
 node-reactjs       latest           df2fda52c41a   2 hours ago     975MB
@@ -63,7 +60,7 @@ NETWORK ID     NAME      DRIVER    SCOPE
 5d945100191c   homenet   bridge    local
 
 5 --- create an container for test ---
-$ cd ~/Documents/GitHub/docker/node/node-react-js // we need be in the correct directory.
+$ cd ~/Documents/GitHub/docker/node/node-react-js/rsbuild-rjs-app // we need be in the correct directory.
 
 --- ---
 $ sudo docker run -ti --name noderjsd \
@@ -101,17 +98,17 @@ $ npx --version
 
 6 --- I will create another rsbuild react app for test ---
 
-$ mkdir rsbuild-rjs-default
-$ cd rsbuild-rjs-default/
+$ mkdir app
+$ cd app/
 $ npm create rsbuild@latest
-$ cd rsbuild-app-default
+$ cd app
 $ npm install
 $ npm fund
 $ rm package-lock.json // if you need, delete the file.
 $ npm install
 $ npm fund
-$ chown nobody:nogroup -Rvf ../rsbuild-app-default
-$ chmod 777 -Rvf ../rsbuild-app-default
+$ chown nobody:nogroup -Rvf ../app
+$ chmod 777 -Rvf ../app
 $ mv rsbuild.config.mjs rsbuild.config.ts // *** !importante... ***
 
 --- run the app reactjs. ---
