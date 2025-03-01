@@ -7,6 +7,7 @@ https://rsbuild.dev/guide/framework/react
 # --- *** React JS Develop Environment with create rsbuild@latest from Docker in Linux Mint 21. *** --- #
 
 --- youtube ---
+https://youtu.be/TWd0oEpHHuM
 
 --- github repository ---
 https://github.com/ggvhcs/node-react-js
