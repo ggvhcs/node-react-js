@@ -62,8 +62,6 @@ NETWORK ID     NAME      DRIVER    SCOPE
 5 --- create an container for test ---
 $ cd ~/Documents/GitHub/docker/node/node-react-js // we need be in the correct directory.
 
-$ docker run -d -it -p [host_port]:[container_port] –name [container_name] [image_id/image_tag]
-
 --- ---
 $ sudo docker run -ti --name create-rjs-app \
 --net homenet --ip 172.15.0.15 -dp 3000:3000 \
@@ -106,9 +104,13 @@ $ ls -l /app
 $ npx create-react-app create-rjs-app // command for create the app with name create-rjs-app.
 $ cd create-rjs-app 
 $ yarn start // run the app reactjs.
----
+
+$ npm fund
+$ rm package-lock.json // if you need, delete the file.
+$ npm install
+$ npm fund
+$ chown nobody:nogroup -Rvf ../rsbuild-app
+$ chmod 777 -Rvf ../rsbuild-app---
 ---
 
 8 --- open the app with web browser ---
-9 --- !for test. ---
-npm install react-scripts@latest
